@@ -13,9 +13,28 @@ export default class Login extends Component {
 
     onFinish =values=>{
         console.log('Received values of form',values);
-        const username = values['username']
-        const password = values['password']
+        console.log(values.username);
+        console.log(values.password);
+        alert("send the requset,username="+values.username+",password="+values.password)
+    };
+
+    onFinishFailed = errorInfo=>{
+        console.log('Failed:', errorInfo);
+
+    };
+
+    validatePwd =(rule,value,callback) =>{
+        if(!value) {
+            callback('Please enter password!')
+          } else if (value.length<6) {
+            callback('password cannot less than 6.')
+          } else if (!/^[a-zA-Z0-9_]+$/.test(value)) {
+            callback('full of them must be A-Z or a-z or number or "_"')
+          } else {
+            callback() 
+          }
     }
+
     render() {
         return (
             <div className='login'>
@@ -25,15 +44,24 @@ export default class Login extends Component {
                 </div>
                 <div className='login-content'>
                     <h1>User Login</h1>
-                    <Form onFinish={this.onFinish} className="login-form">
-                        <Item name="username"
-                               rules={Rules["username"]}>
+                    <Form 
+                        onFinish={this.onFinish}  
+                        onFinishFailed={this.onFinishFailed} 
+                        autoComplete="off"
+                        className="login-form">
+                        <Item 
+                            name="username"
+                            initialValue={''}
+                            rules={Rules["username"]}>
                             <Input
                                 prefix={<UserOutlined style={{ color: 'rgba(0,0,0,.25)' }} />}
                                 placeholder="Username"
                             />
                         </Item>
-                        <Item name="password" rules={[{required:true,message:"Please enter password!"}]}>
+                        <Item 
+                            name="password" 
+                            initialValue={''}
+                            rules={[{validator:this.validatePwd}]}>
                             <Input
                                 prefix={<LockOutlined type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
                                 type="password"

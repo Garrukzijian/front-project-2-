@@ -13,7 +13,8 @@ This is a web store backend application based on react development, including re
 2022-02-18:add login and admin page  
 2022-02-19：Add css for login page  
 2022-02-19：Use the antd to add the login form(v4)  
-
+2022-02-19：Create login form  
+2022-02-19：Front-end form validation
 ## Tutorials
 
 ## Principle Description
