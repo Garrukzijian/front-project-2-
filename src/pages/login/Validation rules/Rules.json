@@ -6,8 +6,8 @@
             "message": "Please enter username!"
         },
         {
-            "min": 6,
-            "message": "username cannot less than 6."
+            "min": 4,
+            "message": "username cannot less than 4."
         },
         {
              "max": 12,

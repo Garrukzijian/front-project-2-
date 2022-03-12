@@ -1,6 +1,7 @@
 import axios from 'axios'
 import qs from "qs"
 
+//  添加请求拦截器
 axios.interceptors.request.use(function(config){
 
     const{method,data} = config
