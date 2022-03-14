@@ -1,45 +1,32 @@
 import React, { Component } from 'react';
 import { Form, Input, Button, message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import {Navigate} from 'react-router-dom'
 
 import Rules from'./Validation rules/Rules.json';
 import {reqLogin} from '../../api'
-import logo from './images/Logo.jpg';
+import logo from '../../assets/images/Logo.jpg';
 import './login.css'
+import memoryUtils from '../../utils/memoryUtils'
+import storageUtils from '../../utils/storageUtils'
 
 const Item = Form.Item
 
 
 export default class Login extends Component {
-    
-    // validateFields=async(err,values)=>{ 
-    //     if(!err){
-    //         const{username,password}=values
-    //         const result = await reqLogin(username,password)
-    //         if(result.status===0){
-    //             message.success('login successful')
-    //             this.pro
-    //         }
-    //         else{
-    //             message.error(result.msg)
-    //         }
-    //     }
-    //     else{
-    //         console.log('检验失败!')
-    //     }
-    // };
 
     onFinish =async(values)=>{
         const{username,password}=values
         const result = await reqLogin(username,password)
-        // const user = result.data
-        // memoryUtils.user = user
-        // storageUtils. saveUser(user)
+
         if(result.status===0){
-            //跳转页面
+            const user = result.data
+            storageUtils.saveUser(user)
+            memoryUtils.user=user
+
+            //change to the admin page
             message.success('login in succeful')
             window.location.href="/admin"
-
         }
         else{
             message.error(result.msg)
@@ -64,10 +51,10 @@ export default class Login extends Component {
     }
 
     render() {
-        // const user = memoryUtils.user
-        // if(user && user._id) {
-        //     return <Redirect to='/'/>
-        // }
+        const user = memoryUtils.user
+        if(user._id){
+            return<Navigate to='/admin/*'/>
+        }
         return (
             <div className='login'>
                 <div className='login-header'>

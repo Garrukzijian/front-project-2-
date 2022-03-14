@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import storageUtils from './utils/storageUtils'
+import memoryUtils from './utils/memoryUtils'
 import './api'
 import reportWebVitals from './reportWebVitals';
 

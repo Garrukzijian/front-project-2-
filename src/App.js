@@ -1,7 +1,6 @@
 import React,{Component} from 'react';
-import {Button,message, Switch} from 'antd';
 import './App.css';
-import {BrowserRouter,HashRouter,Routes,Route}from "react-router-dom"
+import {BrowserRouter,Routes,Route}from "react-router-dom"
 //import page
 import Login from './pages/login/login';
 import Admin from './pages/admin/admin';
@@ -13,7 +12,7 @@ class App extends Component{
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Login/>}/>
-          <Route path='/admin' element={<Admin/>}/>
+          <Route path='/admin/*' element={<Admin/>}/>
         </Routes> 
       </BrowserRouter>
     )
