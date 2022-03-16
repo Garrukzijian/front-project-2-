@@ -2,11 +2,45 @@ import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 import {Menu} from 'antd'
 import './index.css'
+import menuList from '../../config/menuConfig'
 import logo from '../../assets/images/Logo.jpg'
 
 const {SubMenu}=Menu
 
 export default class LeftNav extends Component {
+
+  getMenuNodes=(menuList)=>{
+    return menuList.reduce((pre,item)=>{
+      if(!item.children){
+        pre.push(
+        <Menu.Item key={item.key}>
+          <Link to={"/admin"+item.key}>
+            <span>{item.title}</span>
+          </Link>
+        </Menu.Item>
+        )
+      }else{
+        pre.push(
+          <SubMenu
+          key={item.key}
+          title={
+            <span>
+              <span>{item.title}</span>
+            </span>
+          } 
+        >
+          {
+            this.getMenuNodes(item.children)
+          }
+        </SubMenu>
+        )
+      }
+
+      return pre
+    },[])
+
+  }
+
   render() {
     return (
     <div className='left-nav'>
@@ -20,30 +54,9 @@ export default class LeftNav extends Component {
           mode="inline"
           theme="dark"
         >
-          <Menu.Item key="/home">
-            <Link to="/admin/home">
-              <span>Homepage</span>
-            </Link>
-          </Menu.Item>
-          <SubMenu
-            key="products"
-            title={
-              <span>
-                <span>product</span>
-              </span>
-            }
-          >
-          <Menu.Item key="/category">
-            <Link to="/admin/category">
-              <span>category management</span>
-            </Link>
-          </Menu.Item>
-          <Menu.Item key="/product">
-            <Link to="/admin/product">
-              <span>product management</span>
-            </Link>
-          </Menu.Item>
-          </SubMenu>
+          {
+            this.getMenuNodes(menuList)
+          }
         </Menu>
       </header>
     </div>
