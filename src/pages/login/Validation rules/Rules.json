@@ -6,8 +6,8 @@
             "message": "Please enter username!"
         },
         {
-            "min": 6,
-            "message": "username cannot less than 6."
+            "min": 4,
+            "message": "username cannot less than 4."
         },
         {
              "max": 12,
@@ -15,27 +15,7 @@
         },
         {
             "pattern": "^[a-zA-Z0-9_]",
-            "message": "full of them must be A-Z or a-z or number"
-        }    
-    ],
-    "password": [
-        {
-            "required": true,
-            "whitespace": true,
-            "message": "Please enter username!"
-        },
-        {
-            "min": 6,
-            "message": "username cannot less than 6."
-        },
-        {
-             "max": 12,
-            "message": "username cannot more than 12."
-        },
-        {
-            "pattern": "^[a-zA-Z0-9_]",
-            "message": "full of them must be A-Z or a-z or number"
-        }    
-    ]
-
+            "message": "full of them must be A-Z or a-z or number or '_'"
+        }  
+    ]  
 }
