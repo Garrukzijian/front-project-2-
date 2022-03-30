@@ -59,7 +59,7 @@ export default class Login extends Component {
             <div className='login'>
                 <div className='login-header'>
                     <img src={logo} alt="logo" />
-                    <h1>React project: Web store backend</h1>
+                    <h1>React project: Web store backend (username:admin password:admin)</h1>
                 </div>
                 <div className='login-content'>
                     <h1>User Login</h1>

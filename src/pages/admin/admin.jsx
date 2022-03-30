@@ -1,24 +1,26 @@
 import React, { Component } from 'react';
-import {BrowserRouter, Navigate,Route,Routes} from 'react-router-dom'
+import {Navigate,Route,Routes} from 'react-router-dom'
 import memoryUtils from '../../utils/memoryUtils'
 import {Layout} from 'antd'
 import LeftNav from '../../components/left-nav';
 import Header from '../../components/header';
 import Home from '../home/home.jsx'
 import Category from '../category/category.jsx'
-import Product from '../products/products.jsx'
+import Product from '../products/home.jsx'
+import ProductAddUpdate from '../products/add-update.jsx'
+import ProductDetail from '../products/detail.jsx'
 import Role from '../role/role.jsx'
 import User from '../user/user.jsx'
 import Bar from '../chart/bar.jsx'
 import Line from '../chart/line.jsx'
 import Pie from '../chart/pie.jsx'
 
+
 const { Content, Footer,Sider} = Layout;
 
 
 export default class Admin extends Component{
     render(){
-        //读取保存的user
         const user = memoryUtils.user
         if(!user._id){
             return<Navigate  to="/"/>
@@ -35,12 +37,14 @@ export default class Admin extends Component{
                         <Route path="*" element={<Navigate to="/admin/home" />} />
                         <Route path='/home' element={<Home/>}/>
                         <Route path='/category' element={<Category/>}/>
-                        <Route path='/product' element={<Product/>}/>
+                        <Route path='/product/*' element={<Product/>}/>
                         <Route path='/user' element={<User/>}/>
                         <Route path='/role' element={<Role/>}/>
                         <Route path="/charts/bar" element={<Bar/>}/>
                         <Route path="/charts/pie" element={<Pie/>}/>
                         <Route path="/charts/line" element={<Line/>}/>
+                        <Route path='/product/addupdate' element={<ProductAddUpdate/>}/>
+                        <Route path='/product/detail' element={<ProductDetail/>}/>
                     </Routes>
               </Content>
               <Footer style={{textAlign: 'center', color: '#cccccc'}}>

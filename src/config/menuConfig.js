@@ -46,11 +46,6 @@ const menuList = [
         },
       ]
     },
-  
-    {
-      title: 'order management',
-      key: '/order',
-    },
   ]
   
   export default menuList
